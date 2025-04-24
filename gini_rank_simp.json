@@ -1,13 +1,64 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Gini Coefficients Over Time (1-17)",
-    "frame": "bounds"
+    "text": "Gini coefficient rankings",
+    "subtitle": [""],
+    "color": "#122b39E6",
+    "subtitleColor": "#676A86",
+    "anchor": "start",
+    "dx": 24,
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 4,
+    "offset": 0
   },
   "width": 500,
   "height": 350,
+  "config": {
+    "font": "Arial",
+    "mark": {"line": {"interpolate": "linear"}},
+    "view": {"stroke": "transparent", "width": 400, "height": 300},
+    "axisX": {
+      "labelColor": "#122b39",
+      "tickColor": "#122b39",
+      "domainColor": "#122b39",
+      "domainOpacity": 0.5,
+      "gridOpacity": 0,
+      "labelFont": "Arial",
+      "labelAngle": 0,
+      "labelAlign": "center",
+      "labelFontSize": 11,
+      "labelPadding": 5,
+      "tickCount": 5,
+      "tickSize": 0,
+      "title": ""
+    },
+    "axisY": {
+      "labelColor": "#122b39",
+      "labelFont": "Arial",
+      "tickColor": "#122b39",
+      "domainColor": "#122b39",
+      "gridColor": "#122b39",
+      "gridDash": [1, 5],
+      "gridOpacity": 0.5,
+      "labelPadding": 5,
+      "labelFontSize": 11,
+      "domainOpacity": 0.5,
+      "tickSize": 0,
+      "title": null,
+      "titleAlign": "left",
+      "titleAngle": 0,
+      "titleBaseline": "bottom",
+      "titleColor": "#122b39",
+      "titleOpacity": 0.9,
+      "titleX": 0,
+      "titleY": -7,
+      "labelExpr": "datum.value",
+      "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+    }
+  },
   "data": {
-    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/gini_rank.csv"
+    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/gini_rank_synth.csv"
   },
   "transform": [
     {
@@ -17,146 +68,137 @@
           "as": "rank"
         }
       ],
-      "sort": [
-        {"field": "gini", "order": "descending"}
-      ],
+      "sort": [{"field": "gini", "order": "descending"}],
       "groupby": ["year"]
     },
     {
-      "calculate": "datum.countryname === 'United Kingdom' ? 'United Kingdom' : 'Other'",
+      "calculate": "datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK' ? 'Highlight' : 'Other'",
       "as": "highlight"
     }
   ],
   "layer": [
     {
-      "mark": {
-        "type": "line"
-      },
+      "mark": "line",
       "encoding": {
-        "x": {
-          "field": "year",
-          "type": "temporal",
-          "title": ""
-        },
-        "y": {
-          "field": "rank",
-          "type": "ordinal",
-          "axis": {
-            "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            "orient": "left",
-            "title": ""
-          }
-        },
+        "x": {"field": "year", "type": "temporal", "title": "", "axis": {"grid": false}, },
+        "y": {"field": "rank", "type": "ordinal", "axis": {"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], "orient": "left", "title": ""}},
         "color": {
-          "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": "steelblue"
+          "field": "countryname",
+          "type": "nominal",
+          "title": "Country",
+          "scale": {
+            "domain": ["Chile", "Switzerland", "Italy", "France", "Canada", "United States", "Israel", "Spain", "Netherlands", "Ireland", "Denmark", "Norway", "United Kingdom", "Australia", "Sweden", "Belgium", "Finland", "Synthetic UK"],
+            "range": ["black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "#1f77b4", "black", "black", "black", "black", "#1f77b4"]
           },
-          "value": "lightgrey"
+          "legend": null
         },
-        "strokeWidth": {
+        "opacity": {
           "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": 3
+            "test": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'",
+            "value": 1
           },
-          "value": 1
+          "value": 0.01
+        }
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {"field": "year", "type": "temporal", "title": "", "axis": {"grid": false}},
+        "y": {"field": "rank", "type": "ordinal", "axis": {"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], "orient": "right", "title": ""}},
+        "color": {
+          "field": "countryname",
+          "type": "nominal",
+          "title": "Country",
+          "scale": {
+            "domain": ["Chile", "Switzerland", "Italy", "France", "Canada", "United States", "Israel", "Spain", "Netherlands", "Ireland", "Denmark", "Norway", "United Kingdom", "Australia", "Sweden", "Belgium", "Finland", "Synthetic UK"],
+            "range": ["black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "#1f77b4", "black", "black", "black", "black", "#1f77b4"]
+          },
+          "legend": null
         },
-        "detail": {"field": "countryname"}
+        "opacity": {
+          "condition": {
+            "test": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'",
+            "value": 1
+          },
+          "value": 0.1
+        }
       }
     },
     {
       "mark": {
-        "type": "line"
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "temporal",
-          "title": ""
-        },
-        "y": {
-          "field": "rank",
-          "type": "ordinal",
-          "axis": {
-            "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-            "orient": "right",
-            "title": ""
-          }
-        },
-        "color": {
-          "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": "steelblue"
-          },
-          "value": "lightgrey"
-        },
-        "strokeWidth": {
-          "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": 3
-          },
-          "value": 1
-        },
-        "detail": {"field": "countryname"}
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -5
+        "type": "text", 
+        "align": "right", 
+        "dx": -5,
       },
       "encoding": {
         "x": {"value": -20},
         "y": {"field": "rank", "type": "ordinal"},
         "text": {"field": "countryname", "type": "nominal"},
-        "color": {
+        "color": {"field": "countryname", "type": "nominal"},
+        "opacity": {
           "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": "steelblue"
+            "test": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'",
+            "value": 1
           },
-          "value": "black"
-        },
-        "fontWeight": {
-          "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": "bold"
-          },
-          "value": "normal"
+          "value": 0.4
         }
       },
-      "transform": [
-        {"filter": {"field": "year", "equal": 1971}}
-      ]
+      "transform": [{"filter": {"field": "year", "equal": 1971}}]
     },
     {
       "mark": {
-        "type": "text",
-        "align": "left",
-        "dx": 5
-      },
+        "type": "text", 
+        "align": "left", 
+        "dx": 5,
+        "dy": {
+          "expr": "{\"Switzerland\": 20}[datum.countryname]"
+        }
+        },
       "encoding": {
-        "x": {"value": 520},
+        "x": {"value": 525},
         "y": {"field": "rank", "type": "ordinal"},
         "text": {"field": "countryname", "type": "nominal"},
-        "color": {
+        "color": {"field": "countryname", "type": "nominal"},
+        "opacity": {
           "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": "steelblue"
+            "test": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'",
+            "value": 1
           },
-          "value": "black"
-        },
-        "fontWeight": {
-          "condition": {
-            "test": "datum.highlight === 'United Kingdom'",
-            "value": "bold"
-          },
-          "value": "normal"
+          "value": 0.4
         }
       },
+      "transform": [{"filter": {"field": "year", "equal": 2000}}]
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3
+      },
       "transform": [
-        {"filter": {"field": "year", "equal": 2000}}
-      ]
+        {
+          "filter": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "ordinal"
+        },
+        "color": {
+          "field": "countryname",
+          "type": "nominal",
+          "scale": {
+            "domain": ["United Kingdom", "Synthetic UK"],
+            "range": ["#1f77b4", "#1f77b4"]
+          },
+          "legend": null
+        }
+      }
     }
   ]
 }
