@@ -1,0 +1,30 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Gini Coefficients Over Time",
+    "frame": "bounds",
+  },
+  "width": 500,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/gini_rank.csv"
+  },
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "temporal",
+      "title": ""
+    },
+    "y": {
+      "field": "gini",
+      "type": "quantitative",
+      "title": "Gini Coefficient"
+    },
+    "color": {
+      "field": "countryname",
+      "type": "nominal",
+      "title": "Country"
+    }
+  }
+}
