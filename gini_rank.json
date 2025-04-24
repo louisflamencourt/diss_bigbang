@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Gini Coefficients Over Time",
+    "frame": "bounds"
+  },
+  "width": 500,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/gini_rank.csv"
+  },
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {"field": "gini", "order": "descending"}
+      ],
+      "groupby": ["year"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "title": ""
+        },
+        "y": {
+          "field": "rank",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "countryname",
+          "type": "nominal",
+          "title": "Country",
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5
+      },
+      "encoding": {
+        "x": {"value": -10},
+        "y": {"field": "rank", "type": "ordinal"},
+        "text": {"field": "countryname", "type": "nominal"},
+        "color": {"field": "countryname", "type": "nominal"}
+      },
+      "transform": [
+        {"filter": {"field": "year", "equal": 1971}}
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5
+      },
+      "encoding": {
+        "x": {"value": 510},
+        "y": {"field": "rank", "type": "ordinal"},
+        "text": {"field": "countryname", "type": "nominal"},
+        "color": {"field": "countryname", "type": "nominal"}
+      },
+      "transform": [
+        {"filter": {"field": "year", "equal": 2000}}
+      ]
+    }
+  ]
+}
