@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Gini Coefficients Over Time (1-17)",
+    "frame": "bounds"
+  },
+  "width": 500,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/gini_rank.csv"
+  },
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "rank"
+        }
+      ],
+      "sort": [
+        {"field": "gini", "order": "descending"}
+      ],
+      "groupby": ["year"]
+    },
+    {
+      "calculate": "datum.countryname === 'United Kingdom' ? 'United Kingdom' : 'Other'",
+      "as": "highlight"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "title": ""
+        },
+        "y": {
+          "field": "rank",
+          "type": "ordinal",
+          "axis": {
+            "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+            "orient": "left",
+            "title": ""
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": "steelblue"
+          },
+          "value": "lightgrey"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": 3
+          },
+          "value": 1
+        },
+        "detail": {"field": "countryname"}
+      }
+    },
+    {
+      "mark": {
+        "type": "line"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "title": ""
+        },
+        "y": {
+          "field": "rank",
+          "type": "ordinal",
+          "axis": {
+            "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+            "orient": "right",
+            "title": ""
+          }
+        },
+        "color": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": "steelblue"
+          },
+          "value": "lightgrey"
+        },
+        "strokeWidth": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": 3
+          },
+          "value": 1
+        },
+        "detail": {"field": "countryname"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -5
+      },
+      "encoding": {
+        "x": {"value": -20},
+        "y": {"field": "rank", "type": "ordinal"},
+        "text": {"field": "countryname", "type": "nominal"},
+        "color": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": "steelblue"
+          },
+          "value": "black"
+        },
+        "fontWeight": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": "bold"
+          },
+          "value": "normal"
+        }
+      },
+      "transform": [
+        {"filter": {"field": "year", "equal": 1971}}
+      ]
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5
+      },
+      "encoding": {
+        "x": {"value": 520},
+        "y": {"field": "rank", "type": "ordinal"},
+        "text": {"field": "countryname", "type": "nominal"},
+        "color": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": "steelblue"
+          },
+          "value": "black"
+        },
+        "fontWeight": {
+          "condition": {
+            "test": "datum.highlight === 'United Kingdom'",
+            "value": "bold"
+          },
+          "value": "normal"
+        }
+      },
+      "transform": [
+        {"filter": {"field": "year", "equal": 2000}}
+      ]
+    }
+  ]
+}
