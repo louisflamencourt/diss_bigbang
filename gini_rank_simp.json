@@ -213,6 +213,16 @@
           "legend": null
         }
       }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 8],
+        "color": "black"
+      },
+      "encoding": {
+        "x": {"datum": "504921600000", "type": "temporal"}
+      }
     }
   ]
 }
