@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": {
+    "text": "Income CAGR by percentile and year",
+    "subtitle": [""],
+    "color": "#122b39E6",
+    "subtitleColor": "#676A86",
+    "anchor": "start",
+    "dx": 24,
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 4,
+    "offset": 0
+  },
+  "width": 500,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/GBR_CAGR.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "percentile",
+      "type": "nominal",
+      "axis": {
+        "labelColor": "#122b39",
+        "labelFont": "Arial",
+        "tickColor": "#122b39",
+        "domainColor": "#122b39",
+        "gridColor": "#122b39",
+        "gridDash": [1, 5],
+        "gridOpacity": 0.5,
+        "labelPadding": 5,
+        "labelFontSize": 11,
+        "domainOpacity": 0.5,
+        "tickSize": 0,
+        "title": null,
+        "titleAlign": "left",
+        "titleAngle": 0,
+        "tickCount": 5,
+        "titleBaseline": "bottom",
+        "titleColor": "#122b39",
+        "titleOpacity": 0.9,
+        "titleX": 0,
+        "titleY": -7
+      }
+    },
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "scale": { "padding": 20 },
+      "axis": {
+        "labelColor": "#122b39",
+        "tickColor": "#122b39",
+        "domainColor": "#122b39",
+        "domainOpacity": 0.5,
+        "gridColor": {
+          "condition": { "test": "datum.value === 0", "value": "#122b39" },
+          "value": "#ddd"
+        },
+        "gridOpacity": 0.5,
+        "labelFont": "Arial",
+        "labelAngle": 0,
+        "labelAlign": "center",
+        "labelFontSize": 11,
+        "labelPadding": 5,
+        "tickCount": 6,
+        "tickSize": 0,
+        "title": ""
+      }
+    },
+    "yOffset": { "field": "period" },
+    "color": { "field": "period", "type": "nominal" }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": { "band": 0.5 }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": { "expr": "datum.value < 0 ? 'right' : 'left'" },
+        "dx": { "expr": "datum.value < 0 ? -2 : 2" },
+        "baseline": "middle"
+      },
+      "encoding": {
+        "text": { "field": "value", "type": "quantitative" }
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.period === '1986-00'" }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "shape": "circle",
+        "size": 100
+      },
+      "encoding": {
+        "x": { "field": "diff", "type": "quantitative" },
+        "y": { "field": "percentile", "type": "nominal" },
+        "yOffset": { "value": 28 },
+        "color": { "value": "red" },
+        "dy": { "value": 20 }
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "mark": {
+      "line": { "interpolate": "linear" }
+    },
+    "view": { "stroke": "transparent" }
+  }
+}
