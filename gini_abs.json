@@ -104,7 +104,6 @@
               "black",
               "black",
               "black",
-              "black",
               "black"
             ]
           },
@@ -166,6 +165,16 @@
         "text": {"field": "countryname", "type": "nominal"},
         "x": {"value": 450},
         "y": {"field": "gini", "title": "", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 8],
+        "color": "black"
+      },
+      "encoding": {
+        "x": {"datum": "504921600000", "type": "temporal"}
       }
     }
   ],
