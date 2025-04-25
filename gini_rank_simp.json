@@ -85,7 +85,7 @@
         "color": {
           "field": "countryname",
           "type": "nominal",
-          "title": "Country",
+          "title": "",
           "scale": {
             "domain": ["Chile", "Switzerland", "Italy", "France", "Canada", "United States", "Israel", "Spain", "Netherlands", "Ireland", "Denmark", "Norway", "United Kingdom", "Australia", "Sweden", "Belgium", "Finland", "Synthetic UK"],
             "range": ["black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "#1f77b4", "black", "black", "black", "black", "#1f77b4"]
@@ -109,7 +109,7 @@
         "color": {
           "field": "countryname",
           "type": "nominal",
-          "title": "Country",
+          "title": "",
           "scale": {
             "domain": ["Chile", "Switzerland", "Italy", "France", "Canada", "United States", "Israel", "Spain", "Netherlands", "Ireland", "Denmark", "Norway", "United Kingdom", "Australia", "Sweden", "Belgium", "Finland", "Synthetic UK"],
             "range": ["black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "#1f77b4", "black", "black", "black", "black", "#1f77b4"]
@@ -136,6 +136,13 @@
         "y": {"field": "rank", "type": "ordinal"},
         "text": {"field": "countryname", "type": "nominal"},
         "color": {"field": "countryname", "type": "nominal"},
+        "size": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 12
+          },
+          "value": 11
+        },
         "opacity": {
           "condition": {
             "test": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'",
@@ -160,6 +167,13 @@
         "y": {"field": "rank", "type": "ordinal"},
         "text": {"field": "countryname", "type": "nominal"},
         "color": {"field": "countryname", "type": "nominal"},
+        "size": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 12
+          },
+          "value": 11
+        },
         "opacity": {
           "condition": {
             "test": "datum.countryname == 'United Kingdom' || datum.countryname == 'Synthetic UK'",
@@ -173,7 +187,7 @@
     {
       "mark": {
         "type": "line",
-        "strokeWidth": 3
+        "strokeWidth": 3.5
       },
       "transform": [
         {
