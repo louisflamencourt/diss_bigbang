@@ -15,41 +15,16 @@
   "width": 500,
   "height": 350,
   "config": {
-    "font": "Circular Std Book",
+    "font": "Arial",
     "mark": {"line": {"interpolate": "linear"}},
-    "view": {"stroke": "transparent", "width": 400, "height": 300},
-    "range": {
-      "category": [
-        "#001f3f",
-        "#4269d0",
-        "#efb118",
-        "#ff725c",
-        "#6cc5b0",
-        "#3ca951",
-        "#ff8ab7",
-        "#a463f2",
-        "#97bbf5",
-        "#9c6b4e",
-        "#ff8ab7",
-        "#a463f2",
-        "#97bbf5",
-        "#9c6b4e",
-        "#ff8ab7",
-        "#a463f2",
-        "#97bbf5",
-        "#9c6b4e"
-      ],
-      "diverging": ["#E6224B", "#E54753", "#C9C9C9", "#179FDB", "#122B39"],
-      "heatmap": ["#C9C9C9", "#179FDB", "#0063AF", "#122B39"],
-      "ordinal": ["#00A767", "#36B7B4", "#179FDB", "#0063AF", "#243B5A"]
-    },
+    "view": {"stroke": "transparent"},
     "axisX": {
       "labelColor": "#122b39",
       "tickColor": "#122b39",
       "domainColor": "#122b39",
       "domainOpacity": 0.5,
       "gridOpacity": 0,
-      "labelFont": "Circular Std Book",
+      "labelFont": "Arial",
       "labelAngle": 0,
       "labelAlign": "center",
       "labelFontSize": 11,
@@ -60,7 +35,7 @@
     },
     "axisY": {
       "labelColor": "#122b39",
-      "labelFont": "Circular Std Book",
+      "labelFont": "Arial",
       "tickColor": "#122b39",
       "domainColor": "#122b39",
       "gridColor": "#122b39",
@@ -82,7 +57,7 @@
       "labelExpr": "datum.value+'%'"
     }
   },
-  "transform": [{"filter": "datum.countryname != 'Chile'"}],
+  "transform": [{"filter": "datum.countryname != 'Synthetic UK'"}],
   "layer": [
     {
       "mark": {"type": "line"},
@@ -112,25 +87,25 @@
               "Denmark"
             ],
             "range": [
-              "#001f3f",
-              "#001f3f",
-              "#4269d0",
-              "#efb118",
-              "#ff725c",
-              "#6cc5b0",
-              "#3ca951",
-              "#ff8ab7",
-              "#a463f2",
-              "#97bbf5",
-              "#9c6b4e",
-              "#ff8ab7",
-              "#a463f2",
-              "#97bbf5",
-              "#9c6b4e",
-              "#ff8ab7",
-              "#a463f2",
-              "#97bbf5",
-              "#9c6b4e"
+              "#1f77b4",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black"
             ]
           },
           "type": "nominal"
@@ -138,30 +113,23 @@
         "size": {
           "condition": {
             "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
-            "value": 2
+            "value": 3.5
           },
           "value": 1.5
-        },
-        "strokeDash": {
-          "condition": {
-            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
-            "value": [0, 0]
-          },
-          "value": [5, 2]
         },
         "opacity": {
           "condition": {
             "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
             "value": 1
           },
-          "value": 0.8
+          "value": 0.2
         },
         "x": {"field": "year", "title": "", "type": "temporal"},
         "y": {
           "field": "gini",
           "title": "",
           "type": "quantitative",
-          "scale": {"domain": [18, 40]}
+          "scale": {"domain": [18, 60]}
         }
       }
     },
@@ -171,7 +139,7 @@
         "align": "left",
         "dx": 60,
         "dy": {
-          "expr": "datum.countryname === 'United Kingdom' ? 0 : datum.countryname === 'Synthetic UK' ? 20 : datum.countryname === 'Chile' ? 0 : datum.countryname === 'United States' ? 0 : datum.countryname === 'Israel' ? 10 : datum.countryname === 'Italy' ? -10 : datum.countryname === 'Spain' ? -15 : datum.countryname === 'Canada' ? -5 : datum.countryname === 'Switzerland' ? -15 : datum.countryname === 'Australia' ? 0 : datum.countryname === 'Belgium' ? 13 : datum.countryname === 'Ireland' ? 3 : datum.countryname === 'France' ? 15 : datum.countryname === 'Netherlands' ? 0 : datum.countryname === 'Norway' ? 0 : datum.countryname === 'Finland' ? 7 : datum.countryname === 'Sweden' ? 15 : datum.countryname === 'Denmark' ? 0 : 0"
+          "expr": "datum.countryname === 'United Kingdom' ? -8 : datum.countryname === 'Synthetic UK' ? 0 : datum.countryname === 'Chile' ? 0 : datum.countryname === 'United States' ? -10 : datum.countryname === 'Israel' ? 3 : datum.countryname === 'Italy' ? -14 : datum.countryname === 'Spain' ? -13 : datum.countryname === 'Canada' ? -10 : datum.countryname === 'Switzerland' ? -0 : datum.countryname === 'Australia' ? 8 : datum.countryname === 'Belgium' ? 15 : datum.countryname === 'Ireland' ? 23 : datum.countryname === 'France' ? 29 : datum.countryname === 'Netherlands' ? 5 : datum.countryname === 'Norway' ? 7 : datum.countryname === 'Finland' ? 15 : datum.countryname === 'Sweden' ? 22 : datum.countryname === 'Denmark' ? 7 : 0"
         }
       },
       "transform": [{"filter": "year(datum.year) == 2000"}],
@@ -179,57 +147,21 @@
         "color": {
           "field": "countryname",
           "legend": null,
-          "scale": {
-            "domain": [
-              "United Kingdom",
-              "Synthetic UK",
-              "Chile",
-              "United States",
-              "Israel",
-              "Italy",
-              "Spain",
-              "Canada",
-              "Switzerland",
-              "Australia",
-              "Belgium",
-              "Ireland",
-              "France",
-              "Netherlands",
-              "Norway",
-              "Finland",
-              "Sweden",
-              "Denmark"
-            ],
-            "range": [
-              "#001f3f",
-              "#001f3f",
-              "#4269d0",
-              "#efb118",
-              "#ff725c",
-              "#6cc5b0",
-              "#3ca951",
-              "#ff8ab7",
-              "#a463f2",
-              "#97bbf5",
-              "#9c6b4e",
-              "#ff8ab7",
-              "#a463f2",
-              "#97bbf5",
-              "#9c6b4e",
-              "#ff8ab7",
-              "#a463f2",
-              "#97bbf5",
-              "#9c6b4e"
-            ]
-          },
           "type": "nominal"
         },
         "size": {
           "condition": {
             "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
-            "value": 14
+            "value": 12
           },
-          "value": 12
+          "value": 11
+        },
+        "opacity": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 1
+          },
+          "value": 0.3
         },
         "text": {"field": "countryname", "type": "nominal"},
         "x": {"value": 450},
