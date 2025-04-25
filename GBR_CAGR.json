@@ -33,7 +33,7 @@
         "labelFontSize": 11,
         "domainOpacity": 0.5,
         "tickSize": 0,
-        "title": null,
+        "title": "Percentile of wealth distribution",
         "titleAlign": "left",
         "titleAngle": 0,
         "tickCount": 5,
@@ -65,7 +65,8 @@
         "labelPadding": 5,
         "tickCount": 6,
         "tickSize": 0,
-        "title": ""
+        "labelExpr": "datum.value+'%'",
+        "title": "Compound annual growth rate (CAGR)"
       }
     },
     "yOffset": { "field": "period" },
@@ -103,7 +104,7 @@
       },
       "encoding": {
         "x": { "field": "diff", "type": "quantitative" },
-        "y": { "field": "percentile", "type": "nominal" },
+        "y": { "field": "percentile", "type": "nominal"},
         "yOffset": { "value": 21 },
         "color": { "value": "red" },
         "dy": { "value": 2 }
