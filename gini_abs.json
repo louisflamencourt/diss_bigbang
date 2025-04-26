@@ -128,7 +128,7 @@
           "field": "gini",
           "title": "",
           "type": "quantitative",
-          "scale": {"domain": [18, 60]}
+          "scale": {"domain": [10, 50]}
         }
       }
     },
@@ -138,7 +138,7 @@
         "align": "left",
         "dx": 60,
         "dy": {
-          "expr": "datum.countryname === 'United Kingdom' ? -8 : datum.countryname === 'Synthetic UK' ? 0 : datum.countryname === 'Chile' ? 0 : datum.countryname === 'United States' ? -10 : datum.countryname === 'Israel' ? 3 : datum.countryname === 'Italy' ? -14 : datum.countryname === 'Spain' ? -13 : datum.countryname === 'Canada' ? -10 : datum.countryname === 'Switzerland' ? -0 : datum.countryname === 'Australia' ? 8 : datum.countryname === 'Belgium' ? 15 : datum.countryname === 'Ireland' ? 23 : datum.countryname === 'France' ? 29 : datum.countryname === 'Netherlands' ? 5 : datum.countryname === 'Norway' ? 7 : datum.countryname === 'Finland' ? 15 : datum.countryname === 'Sweden' ? 22 : datum.countryname === 'Denmark' ? 7 : 0"
+          "expr": "datum.countryname === 'United Kingdom' ? -8 : datum.countryname === 'Synthetic UK' ? 0 : datum.countryname === 'Chile' ? 0 : datum.countryname === 'United States' ? -10 : datum.countryname === 'Israel' ? 6 : datum.countryname === 'Italy' ? -14 : datum.countryname === 'Spain' ? -13 : datum.countryname === 'Canada' ? -10 : datum.countryname === 'Switzerland' ? -1 : datum.countryname === 'Australia' ? 8 : datum.countryname === 'Belgium' ? 16 : datum.countryname === 'Ireland' ? 25 : datum.countryname === 'France' ? 31 : datum.countryname === 'Netherlands' ? 5 : datum.countryname === 'Norway' ? 7 : datum.countryname === 'Finland' ? 15 : datum.countryname === 'Sweden' ? 24 : datum.countryname === 'Denmark' ? 7 : 0"
         }
       },
       "transform": [{"filter": "year(datum.year) == 2000"}],
