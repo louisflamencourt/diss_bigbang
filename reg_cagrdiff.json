@@ -42,8 +42,8 @@
     }
   },
   "title": {
-    "text": "Change in regional share of total CAGR (pre vs post Big Bang)",
-    "subtitle": ["difference between 1986-96 and 1971-85 shares of total CAGR (in %)"],
+    "text": "CAGR",
+    "subtitle": ["difference between 1971-85 and 1986-96 (in %)"],
     "color": "#122b39E6",
     "subtitleColor": "#676A86",
     "anchor": "start",
@@ -53,7 +53,7 @@
     "subtitlePadding": 4,
     "offset": 10
   },
-  "width": 400,
+  "width": 300,
   "height": 350,
   "data": {
     "url": "https://raw.githubusercontent.com/jhellingsdata/map-data/refs/heads/main/gbr/ITL1_UK_2021.json",
