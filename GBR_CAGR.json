@@ -21,6 +21,7 @@
     "y": {
       "field": "percentile",
       "type": "nominal",
+      "sort": "descending",
       "axis": {
         "labelColor": "#122b39",
         "labelFont": "Arial",
