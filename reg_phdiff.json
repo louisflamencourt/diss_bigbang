@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "font": "Arial",
+    "mark": {"line": {"interpolate": "linear"}},
+    "view": {"stroke": "transparent", "width": 400, "height": 300},
+    "range": {},
+    "axisX": {
+      "labelColor": "#122b39",
+      "tickColor": "#122b39",
+      "domainColor": "#122b39",
+      "domainOpacity": 0.5,
+      "gridOpacity": 0,
+      "labelFont": "Arial",
+      "labelAngle": 0,
+      "labelAlign": "center",
+      "labelFontSize": 11,
+      "labelPadding": 5,
+      "tickCount": 10,
+      "tickSize": 0,
+      "title": ""
+    },
+    "axisY": {
+      "labelColor": "#122b39",
+      "labelFont": "Arial",
+      "tickColor": "#122b39",
+      "domainColor": "#122b39",
+      "gridColor": "#122b39",
+      "gridDash": [1, 5],
+      "gridOpacity": 0.5,
+      "labelPadding": 5,
+      "labelFontSize": 11,
+      "domainOpacity": 0.5,
+      "tickSize": 0,
+      "titleAlign": "left",
+      "titleAngle": 0,
+      "titleBaseline": "bottom",
+      "titleColor": "#122b39",
+      "titleOpacity": 0.9,
+      "titleX": 0,
+      "titleY": -7
+    }
+  },
+  "title": {
+    "text": "Pre vs post Big Bang share of total income",
+    "subtitle": ["difference between 1986-96 and 1971-85 averages (in %)"],
+    "color": "#122b39E6",
+    "subtitleColor": "#676A86",
+    "anchor": "start",
+    "dx": 24,
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 4,
+    "offset": 10
+  },
+  "width": 400,
+  "height": 350,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jhellingsdata/map-data/refs/heads/main/gbr/ITL1_UK_2021.json",
+    "format": {
+      "type": "topojson",
+      "feature": "geog"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.ITL121NM",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/reg_dispincome.csv",
+          "format": {
+            "type": "csv"
+          }
+        },
+        "key": "Region",
+        "fields": ["ph_diff"]
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator"
+  },
+  "mark": {
+    "type": "geoshape",
+    "stroke": "black",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "color": {
+      "field": "ph_diff",
+      "type": "quantitative",
+      "legend": {
+        "title": "Difference",
+        "labelExpr": "datum.value+'%'"
+      },
+      "scale": {
+        "type": "sqrt",
+        "scheme": "redblue",
+        "domainMid": 0
+      }
+    },
+    "tooltip": [
+      {"field": "properties.ITL121NM", "type": "nominal", "title": "Region"},
+      {"field": "ph_diff", "type": "quantitative", "title": "Financial Sector Size"}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.2
+      }
+    }
+  ]
+}
