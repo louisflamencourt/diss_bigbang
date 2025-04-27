@@ -65,6 +65,7 @@
         "labelPadding": 5,
         "tickCount": 6,
         "tickSize": 0,
+        "titleColor": "#122b39",
         "labelExpr": "datum.value+'%'",
         "title": "Compound annual growth rate (CAGR)"
       }
