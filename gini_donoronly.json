@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Gini index (in %)",
+    "subtitle": [""],
+    "color": "#122b39E6",
+    "subtitleColor": "#676A86",
+    "anchor": "start",
+    "dx": 24,
+    "fontSize": 14,
+    "subtitleFontSize": 12,
+    "subtitlePadding": 4,
+    "offset": 0
+  },
+  "width": 500,
+  "height": 300,
+  "config": {
+    "font": "Arial",
+    "mark": {"line": {"interpolate": "linear"}},
+    "view": {"stroke": "transparent"},
+    "axisX": {
+      "labelColor": "#122b39",
+      "tickColor": "#122b39",
+      "domainColor": "#122b39",
+      "domainOpacity": 0.5,
+      "gridOpacity": 0,
+      "labelFont": "Arial",
+      "labelAngle": 0,
+      "labelAlign": "center",
+      "labelFontSize": 11,
+      "labelPadding": 5,
+      "tickCount": 6,
+      "tickSize": 0,
+      "title": ""
+    },
+    "axisY": {
+      "labelColor": "#122b39",
+      "labelFont": "Arial",
+      "tickColor": "#122b39",
+      "domainColor": "#122b39",
+      "gridColor": "#122b39",
+      "gridDash": [1, 5],
+      "gridOpacity": 0.5,
+      "labelPadding": 5,
+      "labelFontSize": 11,
+      "domainOpacity": 0.5,
+      "tickSize": 0,
+      "title": null,
+      "titleAlign": "left",
+      "titleAngle": 0,
+      "tickCount": 5,
+      "titleBaseline": "bottom",
+      "titleColor": "#122b39",
+      "titleOpacity": 0.9,
+      "titleX": 0,
+      "titleY": -7,
+      "labelExpr": "datum.value+'%'"
+    }
+  },
+  "transform": [
+    {
+      "filter": {
+        "field": "countryname",
+        "oneOf": [
+          "Canada",
+          "Australia",
+          "Belgium",
+          "Finland",
+          "France",
+          "Sweden",
+          "United Kingdom",
+          "Synthetic UK"
+        ]
+      }
+    },
+    {"filter": {"field": "year", "range": [504921600000, 946684800000]}}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "line"},
+      "encoding": {
+        "color": {
+          "field": "countryname",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "United Kingdom",
+              "Synthetic UK",
+              "Chile",
+              "United States",
+              "Israel",
+              "Italy",
+              "Spain",
+              "Canada",
+              "Switzerland",
+              "Australia",
+              "Belgium",
+              "Ireland",
+              "France",
+              "Netherlands",
+              "Norway",
+              "Finland",
+              "Sweden",
+              "Denmark"
+            ],
+            "range": [
+              "#1f77b4",
+              "#1f77b4",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black",
+              "black"
+            ]
+          },
+          "type": "nominal"
+        },
+        "size": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 3.5
+          },
+          "value": 1.5
+        },
+        "opacity": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "x": {"field": "year", "title": "", "type": "temporal"},
+        "y": {
+          "field": "gini",
+          "title": "",
+          "type": "quantitative",
+          "scale": {"domain": [20, 40]}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 60,
+        "dy": {
+          "expr": "datum.countryname === 'United Kingdom' ? 0 : datum.countryname === 'Synthetic UK' ? 7 : datum.countryname === 'Canada' ? -15 : datum.countryname === 'Australia' ? -7 : datum.countryname === 'Belgium' ? -2 :  datum.countryname === 'France' ? -1 : datum.countryname === 'Finland' ? 0 : datum.countryname === 'Sweden' ? 6 : 0"
+        }
+      },
+      "transform": [{"filter": "year(datum.year) == 2000"}],
+      "encoding": {
+        "color": {"field": "countryname", "legend": null, "type": "nominal"},
+        "size": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 12
+          },
+          "value": 11
+        },
+        "opacity": {
+          "condition": {
+            "test": "(datum.countryname === 'United Kingdom' || datum.countryname === 'Synthetic UK')",
+            "value": 1
+          },
+          "value": 0.3
+        },
+        "text": {"field": "countryname", "type": "nominal"},
+        "x": {"value": 450},
+        "y": {"field": "gini", "title": "", "type": "quantitative"}
+      }
+    },
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/louisflamencourt/diss_bigbang/refs/heads/main/gini_rank_synth.csv"
+  }
+}
